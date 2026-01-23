@@ -1,0 +1,356 @@
+fileFormatVersion: 2
+guid: e7c9c8bb0a2ee8f4fab1197ffed7efcd
+timeCreated: 1769106336
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Antebraco_L
+    100002: Antebraco_R
+    100004: Armature
+    100006: Canela_L
+    100008: Canela_R
+    100010: Chest
+    100012: Cotovelo_L
+    100014: Cotovelo_R
+    100016: Coxa_L
+    100018: Coxa_R
+    100020: Cube
+    100022: Cube.001
+    100024: Cube.002
+    100026: Cube.003
+    100028: Cube.004
+    100030: Cube.005
+    100032: Cube.006
+    100034: Cube.008
+    100036: Cube.009
+    100038: Cube.010
+    100040: Cube.011
+    100042: Cube.012
+    100044: Cube.013
+    100046: Cube.014
+    100048: Head
+    100050: Head 1
+    100052: Head.001
+    100054: Head.002
+    100056: Icosphere
+    100058: Icosphere.001
+    100060: JoeIK_L
+    100062: JoeIK_R
+    100064: Mao_L
+    100066: Mao_R
+    100068: MaoIK_L
+    100070: MaoIK_R
+    100072: //RootNode
+    100074: Ombro_L
+    100076: Ombro_R
+    100078: Pe_L
+    100080: Pe_R
+    100082: PeIK_L
+    100084: PeIK_R
+    100086: Root
+    100088: Torso
+    100090: Virilha
+    100092: Virilha 1
+    400000: Antebraco_L
+    400002: Antebraco_R
+    400004: Armature
+    400006: Canela_L
+    400008: Canela_R
+    400010: Chest
+    400012: Cotovelo_L
+    400014: Cotovelo_R
+    400016: Coxa_L
+    400018: Coxa_R
+    400020: Cube
+    400022: Cube.001
+    400024: Cube.002
+    400026: Cube.003
+    400028: Cube.004
+    400030: Cube.005
+    400032: Cube.006
+    400034: Cube.008
+    400036: Cube.009
+    400038: Cube.010
+    400040: Cube.011
+    400042: Cube.012
+    400044: Cube.013
+    400046: Cube.014
+    400048: Head
+    400050: Head 1
+    400052: Head.001
+    400054: Head.002
+    400056: Icosphere
+    400058: Icosphere.001
+    400060: JoeIK_L
+    400062: JoeIK_R
+    400064: Mao_L
+    400066: Mao_R
+    400068: MaoIK_L
+    400070: MaoIK_R
+    400072: //RootNode
+    400074: Ombro_L
+    400076: Ombro_R
+    400078: Pe_L
+    400080: Pe_R
+    400082: PeIK_L
+    400084: PeIK_R
+    400086: Root
+    400088: Torso
+    400090: Virilha
+    400092: Virilha 1
+    2300000: Chest
+    2300002: Cube
+    2300004: Cube.001
+    2300006: Cube.002
+    2300008: Cube.003
+    2300010: Cube.005
+    2300012: Cube.006
+    2300014: Cube.008
+    2300016: Cube.009
+    2300018: Cube.011
+    2300020: Cube.012
+    2300022: Cube.013
+    2300024: Cube.014
+    2300026: Head 1
+    2300028: Head.001
+    2300030: Head.002
+    2300032: Icosphere
+    2300034: Icosphere.001
+    2300036: Virilha 1
+    3300000: Chest
+    3300002: Cube
+    3300004: Cube.001
+    3300006: Cube.002
+    3300008: Cube.003
+    3300010: Cube.005
+    3300012: Cube.006
+    3300014: Cube.008
+    3300016: Cube.009
+    3300018: Cube.011
+    3300020: Cube.012
+    3300022: Cube.013
+    3300024: Cube.014
+    3300026: Head 1
+    3300028: Head.001
+    3300030: Head.002
+    3300032: Icosphere
+    3300034: Icosphere.001
+    3300036: Virilha 1
+    4300000: Virilha
+    4300002: Chest
+    4300004: Cube
+    4300006: Icosphere
+    4300008: Cube.005
+    4300010: Cube.006
+    4300012: Cube.008
+    4300014: Icosphere.001
+    4300016: Cube.009
+    4300018: Cube.011
+    4300020: Head
+    4300022: Head.001
+    4300024: Head.002
+    4300026: Cube.001
+    4300028: Cube.002
+    4300030: Cube.014
+    4300032: Cube.012
+    4300034: Cube.013
+    4300036: Cube.003
+    4300038: Cube.010
+    4300040: Cube.004
+    7400000: Scene
+    9500000: //RootNode
+    13700000: Cube.004
+    13700002: Cube.010
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Scene
+      takeName: Scene
+      firstFrame: 1
+      lastFrame: 96
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/JoeIK_L
+        weight: 1
+      - path: Armature/Root/JoeIK_R
+        weight: 1
+      - path: Armature/Root/MaoIK_L
+        weight: 1
+      - path: Armature/Root/MaoIK_R
+        weight: 1
+      - path: Armature/Root/PeIK_L
+        weight: 1
+      - path: Armature/Root/PeIK_L/Pe_L
+        weight: 1
+      - path: Armature/Root/PeIK_L/Pe_L/Cube.003
+        weight: 1
+      - path: Armature/Root/PeIK_R
+        weight: 1
+      - path: Armature/Root/PeIK_R/Pe_R
+        weight: 1
+      - path: Armature/Root/PeIK_R/Pe_R/Cube.013
+        weight: 1
+      - path: Armature/Root/Virilha
+        weight: 1
+      - path: Armature/Root/Virilha/Coxa_L
+        weight: 1
+      - path: Armature/Root/Virilha/Coxa_L/Canela_L
+        weight: 1
+      - path: Armature/Root/Virilha/Coxa_L/Canela_L/Cube.002
+        weight: 1
+      - path: Armature/Root/Virilha/Coxa_L/Cube.001
+        weight: 1
+      - path: Armature/Root/Virilha/Coxa_R
+        weight: 1
+      - path: Armature/Root/Virilha/Coxa_R/Canela_R
+        weight: 1
+      - path: Armature/Root/Virilha/Coxa_R/Canela_R/Cube.012
+        weight: 1
+      - path: Armature/Root/Virilha/Coxa_R/Cube.014
+        weight: 1
+      - path: Armature/Root/Virilha/Torso
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Chest
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Head
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Head/Head 1
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Head/Head.001
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Head/Head.002
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_L
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_L/Cotovelo_L
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_L/Cotovelo_L/Antebraco_L
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_L/Cotovelo_L/Antebraco_L/Cube.006
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_L/Cotovelo_L/Antebraco_L/Mao_L
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_L/Cotovelo_L/Cube.005
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_L/Cube
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_L/Cube/Icosphere
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_R
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_R/Cotovelo_R
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_R/Cotovelo_R/Antebraco_R
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_R/Cotovelo_R/Antebraco_R/Cube.011
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_R/Cotovelo_R/Antebraco_R/Mao_R
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_R/Cotovelo_R/Cube.009
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_R/Cube.008
+        weight: 1
+      - path: Armature/Root/Virilha/Torso/Ombro_R/Cube.008/Icosphere.001
+        weight: 1
+      - path: Armature/Root/Virilha/Virilha 1
+        weight: 1
+      - path: Cube.004
+        weight: 1
+      - path: Cube.010
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Root
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

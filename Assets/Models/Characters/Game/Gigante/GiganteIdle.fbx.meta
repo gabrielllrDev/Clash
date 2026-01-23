@@ -1,0 +1,232 @@
+fileFormatVersion: 2
+guid: 640c942b5b0e24e4eb0f66aa60a4bddd
+timeCreated: 1769101936
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Antebraco_L
+    100002: Antebraco_R
+    100004: Armature
+    100006: Bone.002
+    100008: Braco_L
+    100010: Braco_R
+    100012: Canela_L
+    100014: Canela_R
+    100016: Cube
+    100018: Cube.001
+    100020: //RootNode
+    100022: Head
+    100024: JoeIK_L
+    100026: JoeIK_R
+    100028: Mao_L
+    100030: Mao_R
+    100032: MaoIK_L
+    100034: MaoIK_R
+    100036: Ombro_L
+    100038: Ombro_R
+    100040: Pe_L
+    100042: Pe_R
+    100044: PeIK_L
+    100046: PeIK_R
+    100048: Perna_L
+    100050: Perna_R
+    100052: Root
+    100054: Spine
+    100056: Torso
+    100058: Virilha
+    400000: Antebraco_L
+    400002: Antebraco_R
+    400004: Armature
+    400006: Bone.002
+    400008: Braco_L
+    400010: Braco_R
+    400012: Canela_L
+    400014: Canela_R
+    400016: Cube
+    400018: Cube.001
+    400020: //RootNode
+    400022: Head
+    400024: JoeIK_L
+    400026: JoeIK_R
+    400028: Mao_L
+    400030: Mao_R
+    400032: MaoIK_L
+    400034: MaoIK_R
+    400036: Ombro_L
+    400038: Ombro_R
+    400040: Pe_L
+    400042: Pe_R
+    400044: PeIK_L
+    400046: PeIK_R
+    400048: Perna_L
+    400050: Perna_R
+    400052: Root
+    400054: Spine
+    400056: Torso
+    400058: Virilha
+    2300000: Cube.001
+    3300000: Cube.001
+    4300000: Cube.001
+    4300002: Cube
+    7400000: Scene
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Scene
+      takeName: Scene
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/JoeIK_L
+        weight: 1
+      - path: Armature/Root/JoeIK_R
+        weight: 1
+      - path: Armature/Root/PeIK_L
+        weight: 1
+      - path: Armature/Root/PeIK_L/Pe_L
+        weight: 1
+      - path: Armature/Root/PeIK_R
+        weight: 1
+      - path: Armature/Root/PeIK_R/Pe_R
+        weight: 1
+      - path: Armature/Root/Virilha
+        weight: 1
+      - path: Armature/Root/Virilha/MaoIK_L
+        weight: 1
+      - path: Armature/Root/Virilha/MaoIK_R
+        weight: 1
+      - path: Armature/Root/Virilha/Perna_L
+        weight: 1
+      - path: Armature/Root/Virilha/Perna_L/Canela_L
+        weight: 1
+      - path: Armature/Root/Virilha/Perna_R
+        weight: 1
+      - path: Armature/Root/Virilha/Perna_R/Canela_R
+        weight: 1
+      - path: Armature/Root/Virilha/Spine
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Bone.002
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Head
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Head/Cube.001
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Ombro_L
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Ombro_L/Braco_L
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Ombro_L/Braco_L/Antebraco_L
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Ombro_L/Braco_L/Antebraco_L/Mao_L
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Ombro_R
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Ombro_R/Braco_R
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Ombro_R/Braco_R/Antebraco_R
+        weight: 1
+      - path: Armature/Root/Virilha/Spine/Torso/Ombro_R/Braco_R/Antebraco_R/Mao_R
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Root
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
