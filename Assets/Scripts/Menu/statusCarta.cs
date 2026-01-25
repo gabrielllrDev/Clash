@@ -6,6 +6,8 @@ public class statusCarta : MonoBehaviour {
 
 	public bool isSelected;
 
+	public string nomeCarta;
+
 	public Vector3[] selectedPos;
 	public Vector3[] nonSelectedPos;
 

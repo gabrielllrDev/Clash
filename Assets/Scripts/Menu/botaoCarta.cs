@@ -58,9 +58,22 @@ public class botaoCarta : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 				//}
 
 				if (!statusDaCarta.isSelected && selectingCarta) {
-					
-					disableNonSelectedAnimations = true;
-					StartCoroutine (desativaEAtivaBooleana ());
+
+					if (statusDaCarta.positionNumber == posicaoCartaTroca) {
+
+						disableNonSelectedAnimations = true;
+
+						StartCoroutine (desativaBooleana ());
+						StartCoroutine (desativaAnimacaoCartaSelecionada ());
+
+					} 
+
+					else {
+
+						disableNonSelectedAnimations = true;
+						StartCoroutine (desativaEAtivaBooleana ());
+
+					}
 
 				}
 
@@ -108,8 +121,16 @@ public class botaoCarta : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 		}
 
 	}
+		
 
-	IEnumerator desativaBooleana(){
+	IEnumerator desativaAnimacaoCartaSelecionada(){
+
+		yield return new WaitForSeconds (0.0001f);
+		selectingCarta = false;
+
+	}
+
+	public static IEnumerator desativaBooleana(){
 
 		yield return new WaitForSeconds (0.0001f);
 		disableNonSelectedAnimations = false;

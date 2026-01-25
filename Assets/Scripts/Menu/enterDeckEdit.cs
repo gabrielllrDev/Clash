@@ -37,7 +37,16 @@ public class enterDeckEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 				if (deckEditor) {
 
 					TropasMenu.trocaView (0);
-					tropasRotation.rotation = Quaternion.Euler(-20.823f, -182.045f, 0);
+					tropasRotation.rotation = Quaternion.Euler (-20.823f, -182.045f, 0);
+
+				} 
+
+				else {
+
+					botaoCarta.selectingCarta = false;
+					botaoCarta.disableNonSelectedAnimations = true;
+
+					StartCoroutine (botaoCarta.desativaBooleana ());
 
 				}
 
