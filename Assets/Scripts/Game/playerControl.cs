@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class playerControl : MonoBehaviour {
 
+	public float elixirCost;
+	public float elixirCostII;
+
 	[Header("Posicionamento do Player")]
 
 	bool isSelecting;
@@ -37,6 +40,15 @@ public class playerControl : MonoBehaviour {
 
 	int positionID;
 	int positionID2;
+
+
+	[Header("Tropas")]
+
+	public GameObject tropaIOri;
+	public GameObject tropaIIOri;
+
+	GameObject tropaI;
+	GameObject tropaII;
 
 	// Use this for initialization
 	void Start () {
@@ -152,7 +164,23 @@ public class playerControl : MonoBehaviour {
 
 			else {
 
-				Destroy (holoIPos);
+				if (elixirSliders.elxIValue >= elixirCost) {
+
+					tropaI = Instantiate (tropaIOri);
+					tropaI.transform.position = holoIPos.transform.position;
+					tropaI.transform.SetParent (holoIPos.transform.parent);
+					visibilidadeTropaI ();
+					Destroy (holoIPos);
+					tropaI.SetActive (true);
+					elixirSliders.elxIValue = elixirSliders.elxIValue - elixirCost;
+
+				} 
+
+				else {
+
+					isSelecting = !isSelecting;
+
+				}
 
 			}
 
@@ -171,7 +199,23 @@ public class playerControl : MonoBehaviour {
 
 			else {
 
-				Destroy (holoIIPos);
+				if (elixirSliders.elxIValue >= elixirCost) {
+
+					tropaII = Instantiate (tropaIIOri);
+					tropaII.transform.position = holoIIPos.transform.position;
+					tropaII.transform.SetParent (holoIIPos.transform.parent);
+					visibilidadeTropaII ();
+					Destroy (holoIIPos);
+					tropaII.SetActive (true);
+					elixirSliders.elxIIValue = elixirSliders.elxIIValue - elixirCostII;
+
+				} 
+
+				else {
+
+					isSelectingII = !isSelectingII;
+
+				}
 
 			}
 
@@ -199,11 +243,253 @@ public class playerControl : MonoBehaviour {
 
 	}
 
+	void visibilidadeTropaII(){
+
+		if (tropaII != null) {
+
+			if (deck.deckPlayerII [positionID2] == "Bruxa") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 0) {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerII [positionID2] == "Cavaleiro") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 1) {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerII [positionID2] == "Gigante" && tropaII != null) {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 2) {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerII [positionID2] == "MiniP") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 3) {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerII [positionID2] == "Mosqueteira") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 4) {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaII.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerII [positionID2] == "Fireball") {
+
+				for (int i = 0; i < 5; i++) {
+
+
+					tropaII.GetComponent<objManager>().obj [i].SetActive (false);
+
+
+				}
+
+			}
+
+		}
+
+	}
+
+	void visibilidadeTropaI(){
+		
+		if (tropaI != null) {
+
+			if (deck.deckPlayerI [positionID] == "Bruxa") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 0) {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerI [positionID] == "Cavaleiro") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 1) {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerI [positionID] == "Gigante") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 2) {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerI [positionID] == "MiniP") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 3) {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerI [positionID] == "Mosqueteira") {
+
+				for (int i = 0; i < 5; i++) {
+
+					if (i == 4) {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						tropaI.GetComponent<objManager>().obj [i].SetActive (false);
+
+					}
+
+				}
+
+			}
+
+			if (deck.deckPlayerI [positionID] == "Fireball") {
+
+				for (int i = 0; i < 5; i++) {
+
+
+					tropaI.GetComponent<objManager>().obj [i].SetActive (false);
+
+
+				}
+
+			}
+
+		}
+
+	}
+
 	void visibilidadeHolo(){
 
 		if (holoI != null) {
 
 			if (deck.deckPlayerI [positionID] == "Bruxa") {
+
+				elixirCost = 0.5f;
 
 				for (int i = 0; i < 5; i++) {
 
@@ -225,6 +511,8 @@ public class playerControl : MonoBehaviour {
 
 			if (deck.deckPlayerI [positionID] == "Cavaleiro") {
 
+				elixirCost = 0.3f;
+
 				for (int i = 0; i < 5; i++) {
 
 					if (i == 1) {
@@ -244,6 +532,8 @@ public class playerControl : MonoBehaviour {
 			}
 
 			if (deck.deckPlayerI [positionID] == "Gigante") {
+
+				elixirCost = 0.5f;
 
 				for (int i = 0; i < 5; i++) {
 
@@ -265,6 +555,8 @@ public class playerControl : MonoBehaviour {
 
 			if (deck.deckPlayerI [positionID] == "MiniP") {
 
+				elixirCost = 0.4f;
+
 				for (int i = 0; i < 5; i++) {
 
 					if (i == 3) {
@@ -284,6 +576,8 @@ public class playerControl : MonoBehaviour {
 			}
 
 			if (deck.deckPlayerI [positionID] == "Mosqueteira") {
+
+				elixirCost = 0.4f;
 
 				for (int i = 0; i < 5; i++) {
 
@@ -305,6 +599,8 @@ public class playerControl : MonoBehaviour {
 
 			if (deck.deckPlayerI [positionID] == "Fireball") {
 
+				elixirCost = 0.4f;
+
 				for (int i = 0; i < 5; i++) {
 
 
@@ -320,6 +616,8 @@ public class playerControl : MonoBehaviour {
 		if (holoII != null) {
 
 			if (deck.deckPlayerII [positionID2] == "Bruxa") {
+
+				elixirCostII = 0.5f;
 
 				for (int i = 0; i < 5; i++) {
 
@@ -341,6 +639,8 @@ public class playerControl : MonoBehaviour {
 
 			if (deck.deckPlayerII [positionID2] == "Cavaleiro") {
 
+				elixirCostII = 0.3f;
+
 				for (int i = 0; i < 5; i++) {
 
 					if (i == 1) {
@@ -360,6 +660,8 @@ public class playerControl : MonoBehaviour {
 			}
 
 			if (deck.deckPlayerII [positionID2] == "Gigante" && holoII != null) {
+
+				elixirCostII = 0.5f;
 
 				for (int i = 0; i < 5; i++) {
 
@@ -381,6 +683,8 @@ public class playerControl : MonoBehaviour {
 
 			if (deck.deckPlayerII [positionID2] == "MiniP") {
 
+				elixirCostII = 0.4f;
+
 				for (int i = 0; i < 5; i++) {
 
 					if (i == 3) {
@@ -401,6 +705,8 @@ public class playerControl : MonoBehaviour {
 
 			if (deck.deckPlayerII [positionID2] == "Mosqueteira") {
 
+				elixirCostII = 0.4f;
+
 				for (int i = 0; i < 5; i++) {
 
 					if (i == 4) {
@@ -420,6 +726,8 @@ public class playerControl : MonoBehaviour {
 			}
 
 			if (deck.deckPlayerII [positionID2] == "Fireball") {
+
+				elixirCostII = 0.4f;
 
 				for (int i = 0; i < 5; i++) {
 

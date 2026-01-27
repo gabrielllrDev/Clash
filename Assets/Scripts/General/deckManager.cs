@@ -31,6 +31,12 @@ public class deckManager : MonoBehaviour {
 	public RawImage[] deckGameI;
 	public RawImage[] deckGameII;
 
+	public GameObject[] deckIOBJ;
+	public GameObject[] deckIIOBJ;
+	public float []elixirCost;
+	public float []elixirCostII;
+
+
 	public void defineDecks(){
 
 		for (int i = 0; i < 6; i++) {
@@ -56,72 +62,116 @@ public class deckManager : MonoBehaviour {
 			if (deckPlayerI [i] == "Bruxa") {
 
 				deckGameI [i].texture = texturesCartas [0];
+				elixirCost [i] = 0.5f;
 
 			}
 
 			if (deckPlayerI [i] == "Cavaleiro") {
 
 				deckGameI [i].texture = texturesCartas [1];
+				elixirCost [i] = 0.3f;
 
 			}
 
 			if (deckPlayerI [i] == "Fireball") {
 
 				deckGameI [i].texture = texturesCartas [2];
+				elixirCost [i] = 0.4f;
 
 			}
 
 			if (deckPlayerI [i] == "Gigante") {
 
 				deckGameI [i].texture = texturesCartas [3];
+				elixirCost [i] = 0.5f;
 
 			}
 
 			if (deckPlayerI [i] == "MiniP") {
 
 				deckGameI [i].texture = texturesCartas [4];
+				elixirCost [i] = 0.4f;
 
 			}
 
 			if (deckPlayerI [i] == "Mosqueteira") {
 
 				deckGameI [i].texture = texturesCartas [5];
+				elixirCost [i] = 0.4f;
 
 			}
 
 			if (deckPlayerII [i] == "Bruxa") {
 
 				deckGameII [i].texture = texturesCartas [0];
+				elixirCostII [i] = 0.5f;
 
 			}
 
 			if (deckPlayerII [i] == "Cavaleiro") {
 
 				deckGameII [i].texture = texturesCartas [1];
+				elixirCostII [i] = 0.3f;
 
 			}
 
 			if (deckPlayerII [i] == "Fireball") {
 
 				deckGameII [i].texture = texturesCartas [2];
+				elixirCostII [i] = 0.4f;
 
 			}
 
 			if (deckPlayerII [i] == "Gigante") {
 
 				deckGameII [i].texture = texturesCartas [3];
+				elixirCostII [i] = 0.5f;
 
 			}
 
 			if (deckPlayerII [i] == "MiniP") {
 
 				deckGameII [i].texture = texturesCartas [4];
+				elixirCostII [i] = 0.4f;
 
 			}
 
 			if (deckPlayerII [i] == "Mosqueteira") {
 
 				deckGameII [i].texture = texturesCartas [5];
+				elixirCostII [i] = 0.4f;
+
+			}
+
+		}
+
+	}
+
+	void disponibilidadeCarta(){
+
+		for (int i = 0; i < 4; i++) {
+
+			if (elixirCost [i] > elixirSliders.elxIValue) {
+
+				deckIOBJ [i].SetActive (false);
+
+			} 
+
+			else {
+
+				deckIOBJ [i].SetActive (true);
+
+			}
+
+			if (elixirCostII [i] > elixirSliders.elxIIValue) {
+
+				deckIIOBJ [i].SetActive (false);
+
+			} 
+
+			else {
+
+				deckIIOBJ [i].SetActive (true);
 
 			}
 
@@ -141,6 +191,7 @@ public class deckManager : MonoBehaviour {
 	void Update () {
 
 		defineDecksPartida ();
+		disponibilidadeCarta ();
 
 		p1GameName.text = playerIName;
 		p2GameName.text = playerIIName;
