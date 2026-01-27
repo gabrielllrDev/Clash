@@ -18,6 +18,19 @@ public class deckManager : MonoBehaviour {
 	public Text namePIUI;
 	public Text namePIIUI;
 
+	public Canvas canvas;
+	public Camera menuCam;
+	public Camera gameCam;
+
+	[Header("Game")]
+
+	public Text p1GameName;
+	public Text p2GameName;
+
+	public Texture[] texturesCartas; //1 Bruxa, 2 Cavaleiro, 3 Fireball, 4 Gigante, 5 Mini P, 6 Mosqueteira
+	public RawImage[] deckGameI;
+	public RawImage[] deckGameII;
+
 	public void defineDecks(){
 
 		for (int i = 0; i < 6; i++) {
@@ -36,6 +49,86 @@ public class deckManager : MonoBehaviour {
 
 	}
 
+	void defineDecksPartida(){
+
+		for (int i = 0; i < 4; i++) {
+
+			if (deckPlayerI [i] == "Bruxa") {
+
+				deckGameI [i].texture = texturesCartas [0];
+
+			}
+
+			if (deckPlayerI [i] == "Cavaleiro") {
+
+				deckGameI [i].texture = texturesCartas [1];
+
+			}
+
+			if (deckPlayerI [i] == "Fireball") {
+
+				deckGameI [i].texture = texturesCartas [2];
+
+			}
+
+			if (deckPlayerI [i] == "Gigante") {
+
+				deckGameI [i].texture = texturesCartas [3];
+
+			}
+
+			if (deckPlayerI [i] == "MiniP") {
+
+				deckGameI [i].texture = texturesCartas [4];
+
+			}
+
+			if (deckPlayerI [i] == "Mosqueteira") {
+
+				deckGameI [i].texture = texturesCartas [5];
+
+			}
+
+			if (deckPlayerII [i] == "Bruxa") {
+
+				deckGameII [i].texture = texturesCartas [0];
+
+			}
+
+			if (deckPlayerII [i] == "Cavaleiro") {
+
+				deckGameII [i].texture = texturesCartas [1];
+
+			}
+
+			if (deckPlayerII [i] == "Fireball") {
+
+				deckGameII [i].texture = texturesCartas [2];
+
+			}
+
+			if (deckPlayerII [i] == "Gigante") {
+
+				deckGameII [i].texture = texturesCartas [3];
+
+			}
+
+			if (deckPlayerII [i] == "MiniP") {
+
+				deckGameII [i].texture = texturesCartas [4];
+
+			}
+
+			if (deckPlayerII [i] == "Mosqueteira") {
+
+				deckGameII [i].texture = texturesCartas [5];
+
+			}
+
+		}
+
+	}
+
 	// Use this for initialization
 	void Start () {
 
@@ -46,6 +139,23 @@ public class deckManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		defineDecksPartida ();
+
+		p1GameName.text = playerIName;
+		p2GameName.text = playerIIName;
+
+		if (menuCam.isActiveAndEnabled) {
+
+			canvas.worldCamera = menuCam;
+
+		} 
+
+		else {
+
+			canvas.worldCamera = gameCam;
+
+		}
 
 		defineDecks ();
 

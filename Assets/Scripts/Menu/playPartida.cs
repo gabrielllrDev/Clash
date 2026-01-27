@@ -9,8 +9,11 @@ public class playPartida : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
 	public Animator cutsceneAnim;
 
+	public static bool partidaRolando;
 	// Use this for initialization
 	void Start () {
+
+		partidaRolando = false;
 
 	}
 
@@ -23,6 +26,7 @@ public class playPartida : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 			if (Input.GetMouseButtonDown (0)) {
 
 				cutsceneAnim.SetBool ("Play", true);
+				partidaRolando = true;
 
 			}
 
