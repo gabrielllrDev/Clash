@@ -155,10 +155,14 @@ public class playerControl : MonoBehaviour {
 
 			if (isSelecting) {
 
-				holoIPos = Instantiate (holoIPosOri);
-				holoIPos.transform.position = holoIPosOri.transform.position;
-				holoIPos.transform.SetParent (holoIPosOri.transform.parent);
-				holoIPos.SetActive (true);
+				if (playPartida.partidaRolando) {
+
+					holoIPos = Instantiate (holoIPosOri);
+					holoIPos.transform.position = holoIPosOri.transform.position;
+					holoIPos.transform.SetParent (holoIPosOri.transform.parent);
+					holoIPos.SetActive (true);
+
+				}
 
 			} 
 
@@ -166,19 +170,27 @@ public class playerControl : MonoBehaviour {
 
 				if (elixirSliders.elxIValue >= elixirCost) {
 
-					tropaI = Instantiate (tropaIOri);
-					tropaI.transform.position = holoIPos.transform.position;
-					tropaI.transform.SetParent (holoIPos.transform.parent);
-					visibilidadeTropaI ();
-					Destroy (holoIPos);
-					tropaI.SetActive (true);
-					elixirSliders.elxIValue = elixirSliders.elxIValue - elixirCost;
+					if (playPartida.partidaRolando) {
+
+						tropaI = Instantiate (tropaIOri);
+						tropaI.transform.position = holoIPos.transform.position;
+						tropaI.transform.SetParent (holoIPos.transform.parent);
+						visibilidadeTropaI ();
+						Destroy (holoIPos);
+						tropaI.SetActive (true);
+						elixirSliders.elxIValue = elixirSliders.elxIValue - elixirCost;
+
+					}
 
 				} 
 
 				else {
 
-					isSelecting = !isSelecting;
+					if (playPartida.partidaRolando) {
+
+						isSelecting = !isSelecting;
+
+					}
 
 				}
 
@@ -190,30 +202,42 @@ public class playerControl : MonoBehaviour {
 
 			if (isSelectingII) {
 
-				holoIIPos = Instantiate (holoIIPosOri);
-				holoIIPos.transform.position = holoIIPosOri.transform.position;
-				holoIIPos.transform.SetParent (holoIIPosOri.transform.parent);
-				holoIIPos.SetActive (true);
+				if (playPartida.partidaRolando) {
+
+					holoIIPos = Instantiate (holoIIPosOri);
+					holoIIPos.transform.position = holoIIPosOri.transform.position;
+					holoIIPos.transform.SetParent (holoIIPosOri.transform.parent);
+					holoIIPos.SetActive (true);
+
+				}
 
 			} 
 
 			else {
 
-				if (elixirSliders.elxIValue >= elixirCost) {
+				if (elixirSliders.elxIIValue >= elixirCostII) {
 
-					tropaII = Instantiate (tropaIIOri);
-					tropaII.transform.position = holoIIPos.transform.position;
-					tropaII.transform.SetParent (holoIIPos.transform.parent);
-					visibilidadeTropaII ();
-					Destroy (holoIIPos);
-					tropaII.SetActive (true);
-					elixirSliders.elxIIValue = elixirSliders.elxIIValue - elixirCostII;
+					if (playPartida.partidaRolando) {
+
+						tropaII = Instantiate (tropaIIOri);
+						tropaII.transform.position = holoIIPos.transform.position;
+						tropaII.transform.SetParent (holoIIPos.transform.parent);
+						visibilidadeTropaII ();
+						Destroy (holoIIPos);
+						tropaII.SetActive (true);
+						elixirSliders.elxIIValue = elixirSliders.elxIIValue - elixirCostII;
+
+					}
 
 				} 
 
 				else {
 
-					isSelectingII = !isSelectingII;
+					if (playPartida.partidaRolando) {
+
+						isSelectingII = !isSelectingII;
+
+					}
 
 				}
 
@@ -225,19 +249,23 @@ public class playerControl : MonoBehaviour {
 
 	void posicionamentoCarta(){
 
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {
+		if (Input.GetKeyDown (KeyCode.LeftShift) && playPartida.partidaRolando) {
 
 			isSelecting = !isSelecting;
 
 		}
 
-		if (Input.GetKeyDown (KeyCode.Return)) {
+		if (Input.GetKeyDown (KeyCode.Return) && playPartida.partidaRolando) {
 
 			isSelectingII = !isSelectingII;
 
 		}
 
-		visibilidadeHolo ();
+		if (playPartida.partidaRolando) {
+
+			visibilidadeHolo ();
+
+		}
 
 
 
