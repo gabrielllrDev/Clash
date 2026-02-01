@@ -24,6 +24,11 @@ public class IAScript : MonoBehaviour {
 	public GameObject p3I;
 	public GameObject p3II;
 
+	public GameObject torrePrincessI;
+	public GameObject torrePrincessII;
+	public GameObject torrePrincessRedI;
+	public GameObject torrePrincessRedII;
+
 	public Transform alvo;
 
 	Animator anim;
@@ -52,6 +57,8 @@ public class IAScript : MonoBehaviour {
 
 	bool atacouTorrePrincesa;
 
+	float distancia;
+
 	// Use this for initialization
 	void Start () {
 
@@ -73,6 +80,18 @@ public class IAScript : MonoBehaviour {
 			point [1] = p2I;
 			point [2] = p3I;
 
+			if (!teamBlue && torrePrincessI == null) {
+
+				atacouTorrePrincesa = true;
+
+			}
+
+			if (teamBlue && torrePrincessRedI == null) {
+
+				atacouTorrePrincesa = true;
+
+			}
+
 		} 
 
 		else {
@@ -80,6 +99,18 @@ public class IAScript : MonoBehaviour {
 			point [0] = p1II;
 			point [1] = p2II;
 			point [2] = p3II;
+
+			if (!teamBlue && torrePrincessII == null) {
+
+				atacouTorrePrincesa = true;
+
+			}
+
+			if (teamBlue && torrePrincessRedII == null) {
+
+				atacouTorrePrincesa = true;
+
+			}
 
 		}
 
@@ -127,6 +158,12 @@ public class IAScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (alvo != null) {
+
+			distancia = Vector3.Distance (transform.position, alvo.position);
+
+		}
+
 		barraVida.value = vida / valorInicialVida;
 
 		switch (estado) {
@@ -168,6 +205,13 @@ public class IAScript : MonoBehaviour {
 			anim.SetBool ("Atacando", true);
 			nextPoint = alvo.gameObject;
 
+
+			if (distancia > (distanciaAtaque + 3.2f)) {
+
+				estado = Estado.Perseguindo;
+
+			}
+
 			if (vidaInimigo != null && vidaInimigo.vida <= 0) {
 
 				Destroy (alvo.gameObject);
@@ -180,9 +224,12 @@ public class IAScript : MonoBehaviour {
 		case Estado.Perseguindo:
 
 			anim.SetBool ("Atacando", false);
-			nextPoint = alvo.gameObject;
 
-			float distancia = Vector3.Distance (transform.position, alvo.position);
+			if (alvo != null) {
+
+				nextPoint = alvo.gameObject;
+
+			}
 
 			if (distancia <= distanciaAtaque) {
 
@@ -194,6 +241,12 @@ public class IAScript : MonoBehaviour {
 					coroutineAtivada = true;
 
 				}
+
+			}
+
+			if (alvo == null) {
+
+				estado = Estado.Andando;
 
 			}
 
@@ -225,9 +278,9 @@ public class IAScript : MonoBehaviour {
 		switch (estado) {
 
 		case Estado.Andando:
-			if (other.gameObject.tag == "IAPoint") {
+			if (other.gameObject.tag == "IAPoint" && estado == Estado.Andando) {
 
-				//if (i < 2) {
+				//if (i < 4) {
 
 					i++;
 
@@ -256,6 +309,13 @@ public class IAScript : MonoBehaviour {
 			break;
 
 		case Estado.Perseguindo:
+
+			if (teamBlue && other.gameObject.tag == "BaseAzul" || !teamBlue && other.gameObject.tag == "BaseRed") {
+
+				i = 0;
+
+			}
+
 			break;
 
 		}
