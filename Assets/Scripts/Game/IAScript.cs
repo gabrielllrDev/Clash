@@ -1,6 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public enum Estado{
+
+	Andando,
+	Perseguindo,
+	Atacando,
+	AtacandoTorre
+
+}
 
 public class IAScript : MonoBehaviour {
 
@@ -14,12 +24,46 @@ public class IAScript : MonoBehaviour {
 	public GameObject p3I;
 	public GameObject p3II;
 
-	int i;
+	public Transform alvo;
+
+	Animator anim;
+
+	public int i;
 
 	Vector3 targetPos;
 
+	public Estado estado;
+
+	public IAScript vidaInimigo;
+	public vidaTorre vidaTorre_;
+	public bool teamBlue;
+	public bool ignoreEnemys;
+
+	public float vida;
+	float valorInicialVida;
+	public float dano;
+	public float velocidadeAtaque;
+	public float tempoRepouso;
+	public float distanciaAtaque;
+
+	bool coroutineAtivada;
+
+	public Slider barraVida;
+
+	bool atacouTorrePrincesa;
+
 	// Use this for initialization
 	void Start () {
+
+		atacouTorrePrincesa = false;
+
+		valorInicialVida = vida;
+
+		coroutineAtivada = false;
+
+		estado = Estado.Andando;
+
+		anim = GetComponent<Animator> ();
 
 		i = 0;
 
@@ -43,6 +87,36 @@ public class IAScript : MonoBehaviour {
 
 	}
 
+	IEnumerator danoTorre(){
+
+		coroutineAtivada = false;
+
+		if (estado == Estado.AtacandoTorre) {
+
+			yield return new WaitForSeconds (velocidadeAtaque);
+			vidaTorre_.vida = vidaTorre_.vida - dano;
+			yield return new WaitForSeconds (tempoRepouso);
+			StartCoroutine (danoTorre ());
+
+		}
+
+	}
+
+	IEnumerator danoInimigo(){
+
+		coroutineAtivada = false;
+
+		if (estado == Estado.Atacando) {
+
+			yield return new WaitForSeconds (velocidadeAtaque);
+			vidaInimigo.vida = vidaInimigo.vida - dano;
+			yield return new WaitForSeconds (tempoRepouso);
+			StartCoroutine (danoInimigo ());
+
+		}
+
+	}
+
 	IEnumerator enableAnim(){
 
 		yield return new WaitForSeconds (3f);
@@ -53,24 +127,136 @@ public class IAScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		nextPoint = point [i];
+		barraVida.value = vida / valorInicialVida;
+
+		switch (estado) {
+
+		case Estado.Andando:
+
+			anim.SetBool ("Atacando", false);
+
+			if (i < 4) {
+
+				nextPoint = point [i];
+
+			} 
+
+			else {
+
+				nextPoint = point [3];
+
+			}
+
+			if ((i == 3 && !atacouTorrePrincesa || i == 4 && atacouTorrePrincesa) && vidaTorre_ != null) {
+
+				estado = Estado.AtacandoTorre;
+				atacouTorrePrincesa = true;
+
+				if (!coroutineAtivada) {
+
+					StartCoroutine (danoTorre ());
+					coroutineAtivada = true;
+
+				}
+
+			}
+
+			break;
+
+		case Estado.Atacando:
+
+			anim.SetBool ("Atacando", true);
+			nextPoint = alvo.gameObject;
+
+			if (vidaInimigo != null && vidaInimigo.vida <= 0) {
+
+				Destroy (alvo.gameObject);
+				estado = Estado.Andando;
+
+			}
+
+			break;
+
+		case Estado.Perseguindo:
+
+			anim.SetBool ("Atacando", false);
+			nextPoint = alvo.gameObject;
+
+			float distancia = Vector3.Distance (transform.position, alvo.position);
+
+			if (distancia <= distanciaAtaque) {
+
+				estado = Estado.Atacando;
+
+				if (!coroutineAtivada) {
+
+					StartCoroutine (danoInimigo ());
+					coroutineAtivada = true;
+
+				}
+
+			}
+
+			break;
+
+		case Estado.AtacandoTorre:
+
+			anim.SetBool ("Atacando", true);
+
+			if (vidaTorre_ == null || vidaTorre_.vida <= 0) {
+
+			estado = Estado.Andando;
+
+			}
+
+			break;
+
+		}
 
 		targetPos = nextPoint.transform.position;
 		targetPos.y = transform.position.y;
-
 		transform.LookAt (targetPos);
 		
 	}
+		
 
 	void OnTriggerEnter(Collider other){
 
-		if (other.gameObject.tag == "IAPoint") {
+		switch (estado) {
 
-			if (i < 2) {
+		case Estado.Andando:
+			if (other.gameObject.tag == "IAPoint") {
 
-				i++;
+				//if (i < 2) {
+
+					i++;
+
+				//}
 
 			}
+
+			if ((other.gameObject.tag == "Tropa" && !teamBlue || other.gameObject.tag == "TropaII" && teamBlue) && !ignoreEnemys) {
+
+				alvo = other.transform;
+				estado = Estado.Perseguindo;
+
+				vidaInimigo = other.GetComponent<IAScript> ();
+
+			}
+
+			if (other.gameObject.tag == "Torre") {
+
+				vidaTorre_ = other.GetComponent<vidaTorre> ();
+
+			}
+
+			break;
+
+		case Estado.Atacando:
+			break;
+
+		case Estado.Perseguindo:
+			break;
 
 		}
 
