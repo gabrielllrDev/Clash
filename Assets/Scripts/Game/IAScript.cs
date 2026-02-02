@@ -50,6 +50,7 @@ public class IAScript : MonoBehaviour {
 	public float velocidadeAtaque;
 	public float tempoRepouso;
 	public float distanciaAtaque;
+	public float distanciaAtivaPerseguicao;
 
 	bool coroutineAtivada;
 
@@ -58,6 +59,9 @@ public class IAScript : MonoBehaviour {
 	bool atacouTorrePrincesa;
 
 	float distancia;
+
+	public GameObject sangueParticula_;
+	GameObject sangueParticula;
 
 	// Use this for initialization
 	void Start () {
@@ -162,6 +166,8 @@ public class IAScript : MonoBehaviour {
 
 			distancia = Vector3.Distance (transform.position, alvo.position);
 
+			//Debug.Log (distancia);
+
 		}
 
 		barraVida.value = vida / valorInicialVida;
@@ -214,6 +220,9 @@ public class IAScript : MonoBehaviour {
 
 			if (vidaInimigo != null && vidaInimigo.vida <= 0) {
 
+				sangueParticula = Instantiate (sangueParticula_);
+				sangueParticula.transform.position = alvo.position;
+				sangueParticula.SetActive (true);
 				Destroy (alvo.gameObject);
 				estado = Estado.Andando;
 
@@ -271,6 +280,23 @@ public class IAScript : MonoBehaviour {
 		transform.LookAt (targetPos);
 		
 	}
+
+
+	void OnTriggerStay(Collider other){
+
+		if (estado == Estado.Andando && alvo != null) {
+
+			distancia = Vector3.Distance (transform.position, alvo.position);
+
+			if (distancia <= distanciaAtivaPerseguicao) {
+
+				estado = Estado.Perseguindo;
+
+			}
+
+		}
+
+	}
 		
 
 	void OnTriggerEnter(Collider other){
@@ -291,7 +317,7 @@ public class IAScript : MonoBehaviour {
 			if ((other.gameObject.tag == "Tropa" && !teamBlue || other.gameObject.tag == "TropaII" && teamBlue) && !ignoreEnemys) {
 
 				alvo = other.transform;
-				estado = Estado.Perseguindo;
+				//estado = Estado.Perseguindo;
 
 				vidaInimigo = other.GetComponent<IAScript> ();
 
