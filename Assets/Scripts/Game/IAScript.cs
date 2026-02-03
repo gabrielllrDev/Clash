@@ -63,6 +63,10 @@ public class IAScript : MonoBehaviour {
 	public GameObject sangueParticula_;
 	GameObject sangueParticula;
 
+	public GameObject projetil_;
+	GameObject projetil;
+	public bool ataqueADistancia;
+
 	// Use this for initialization
 	void Start () {
 
@@ -129,7 +133,31 @@ public class IAScript : MonoBehaviour {
 		if (estado == Estado.AtacandoTorre) {
 
 			yield return new WaitForSeconds (velocidadeAtaque);
-			vidaTorre_.vida = vidaTorre_.vida - dano;
+
+			if (vidaTorre_ != null) {
+
+				if (ataqueADistancia) {
+
+					projetil = Instantiate (projetil_);
+					projetil.transform.position = this.transform.position;
+					projetil.transform.LookAt (alvo);
+
+					projetil.GetComponentInChildren<projetilScript>().teamBlue = teamBlue;
+					projetil.GetComponentInChildren<projetilScript>().danoProjetil = dano;
+
+					projetil.SetActive (true);
+
+				} 
+
+
+				else {
+
+					vidaTorre_.vida = vidaTorre_.vida - dano;
+
+				}
+
+			}
+				
 			yield return new WaitForSeconds (tempoRepouso);
 			StartCoroutine (danoTorre ());
 
@@ -144,7 +172,30 @@ public class IAScript : MonoBehaviour {
 		if (estado == Estado.Atacando) {
 
 			yield return new WaitForSeconds (velocidadeAtaque);
-			vidaInimigo.vida = vidaInimigo.vida - dano;
+
+			if (vidaInimigo != null) {
+
+				if (ataqueADistancia) {
+
+					projetil = Instantiate (projetil_);
+					projetil.transform.position = this.transform.position;
+					projetil.transform.LookAt (alvo);
+
+					projetil.GetComponentInChildren<projetilScript>().teamBlue = teamBlue;
+					projetil.GetComponentInChildren<projetilScript>().danoProjetil = dano;
+
+					projetil.SetActive (true);
+
+				} 
+
+				else {
+
+					vidaInimigo.vida = vidaInimigo.vida - dano;
+
+				}
+
+			}
+				
 			yield return new WaitForSeconds (tempoRepouso);
 			StartCoroutine (danoInimigo ());
 
@@ -190,7 +241,7 @@ public class IAScript : MonoBehaviour {
 
 			}
 
-			if ((i == 3 && !atacouTorrePrincesa || i == 4 && atacouTorrePrincesa) && vidaTorre_ != null) {
+			if ((i == 3 && !atacouTorrePrincesa || i == 4 && atacouTorrePrincesa) && vidaTorre_ != null && anim.enabled == true && !ataqueADistancia) {
 
 				estado = Estado.AtacandoTorre;
 				atacouTorrePrincesa = true;
@@ -209,10 +260,21 @@ public class IAScript : MonoBehaviour {
 		case Estado.Atacando:
 
 			anim.SetBool ("Atacando", true);
-			nextPoint = alvo.gameObject;
+
+			if (alvo != null) {
+
+				nextPoint = alvo.gameObject;
+
+			} 
+
+			else {
+
+				estado = Estado.Andando;
+
+			}
 
 
-			if (distancia > (distanciaAtaque + 3.2f)) {
+			if (distancia > (distanciaAtaque + 3.2f) && anim.enabled == true) {
 
 				estado = Estado.Perseguindo;
 
@@ -228,6 +290,7 @@ public class IAScript : MonoBehaviour {
 
 			}
 
+
 			break;
 
 		case Estado.Perseguindo:
@@ -240,7 +303,7 @@ public class IAScript : MonoBehaviour {
 
 			}
 
-			if (distancia <= distanciaAtaque) {
+			if (distancia <= distanciaAtaque && anim.enabled == true) {
 
 				estado = Estado.Atacando;
 
@@ -275,9 +338,13 @@ public class IAScript : MonoBehaviour {
 
 		}
 
-		targetPos = nextPoint.transform.position;
-		targetPos.y = transform.position.y;
-		transform.LookAt (targetPos);
+		if (nextPoint != null) {
+
+			targetPos = nextPoint.transform.position;
+			targetPos.y = transform.position.y;
+			transform.LookAt (targetPos);
+
+		}
 		
 	}
 
@@ -288,7 +355,7 @@ public class IAScript : MonoBehaviour {
 
 			distancia = Vector3.Distance (transform.position, alvo.position);
 
-			if (distancia <= distanciaAtivaPerseguicao) {
+			if (distancia <= distanciaAtivaPerseguicao && (i != 1 || i == 1 && vidaInimigo.i == 1) && anim.enabled == true) {
 
 				estado = Estado.Perseguindo;
 
@@ -323,9 +390,17 @@ public class IAScript : MonoBehaviour {
 
 			}
 
-			if (other.gameObject.tag == "Torre") {
+			if (other.gameObject.tag == "Torre" && !teamBlue || other.gameObject.tag == "TorreII" && teamBlue) {
 
+				alvo = other.transform;
 				vidaTorre_ = other.GetComponent<vidaTorre> ();
+
+				if (ataqueADistancia && anim.enabled == true) {
+
+					estado = Estado.AtacandoTorre;
+					StartCoroutine (danoTorre ());
+
+				}
 
 			}
 
