@@ -355,7 +355,7 @@ public class IAScript : MonoBehaviour {
 
 			distancia = Vector3.Distance (transform.position, alvo.position);
 
-			if (distancia <= distanciaAtivaPerseguicao && (i != 1 || i == 1 && vidaInimigo.i == 1) && anim.enabled == true) {
+			if (distancia <= distanciaAtivaPerseguicao && (i != 1 || i == 1 && vidaInimigo.i == 1) && anim.enabled == true && (other.gameObject.tag == "Tropa" && !teamBlue || other.gameObject.tag == "TropaII" && teamBlue) && !ignoreEnemys) {
 
 				estado = Estado.Perseguindo;
 
