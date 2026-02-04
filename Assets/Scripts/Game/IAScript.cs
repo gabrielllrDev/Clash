@@ -33,7 +33,7 @@ public class IAScript : MonoBehaviour {
 
 	Animator anim;
 
-	public int i;
+	public int i = 0;
 
 	Vector3 targetPos;
 
@@ -67,8 +67,15 @@ public class IAScript : MonoBehaviour {
 	GameObject projetil;
 	public bool ataqueADistancia;
 
+	public bool isBruxa;
+	public GameObject esqueletos_;
+	GameObject esqueletos;
+	bool primeiraSpawnada;
+
 	// Use this for initialization
 	void Start () {
+
+		primeiraSpawnada = false;
 
 		atacouTorrePrincesa = false;
 
@@ -79,8 +86,6 @@ public class IAScript : MonoBehaviour {
 		estado = Estado.Andando;
 
 		anim = GetComponent<Animator> ();
-
-		i = 0;
 
 		if (this.transform.parent.localPosition.z >= 1.5) {
 
@@ -201,12 +206,97 @@ public class IAScript : MonoBehaviour {
 
 		}
 
+
+
 	}
 
 	IEnumerator enableAnim(){
 
 		yield return new WaitForSeconds (3f);
 		this.gameObject.GetComponent<Animator> ().enabled = true;
+
+		if (isBruxa) {
+
+			StartCoroutine (spawnaEsqueletos ());
+
+		}
+
+	}
+
+	IEnumerator spawnaEsqueletos(){
+
+		if (!primeiraSpawnada) {
+
+			primeiraSpawnada = true;
+			esqueletos = Instantiate (esqueletos_);
+			esqueletos.transform.SetParent (esqueletos_.transform.parent);
+			esqueletos.transform.localPosition = esqueletos_.transform.localPosition;
+			esqueletos.transform.rotation = esqueletos_.transform.rotation;
+			esqueletos.transform.localScale = esqueletos_.transform.localScale;
+
+			esqueletos.SetActive (true);
+
+			GameObject esqueletoI = esqueletos.transform.Find ("EsqueletoIdle").gameObject;
+			GameObject esqueletoII = esqueletos.transform.Find ("EsqueletoIdle (1)").gameObject;
+			GameObject esqueletoIII = esqueletos.transform.Find ("EsqueletoIdle (2)").gameObject;
+			GameObject esqueletoIV = esqueletos.transform.Find ("EsqueletoIdle (3)").gameObject;
+
+			yield return new WaitForSeconds (0.3f);
+
+			esqueletoI.transform.SetParent (this.gameObject.transform.parent);
+			esqueletoII.transform.SetParent (this.gameObject.transform.parent);
+			esqueletoIII.transform.SetParent (this.gameObject.transform.parent);
+			esqueletoIV.transform.SetParent (this.gameObject.transform.parent);
+
+			esqueletoI.GetComponent<IAScript>().enabled = true;
+			esqueletoII.GetComponent<IAScript>().enabled = true;
+			esqueletoIII.GetComponent<IAScript>().enabled = true;
+			esqueletoIV.GetComponent<IAScript>().enabled = true;
+
+			esqueletoI.GetComponent<IAScript>().i = i;
+			esqueletoII.GetComponent<IAScript>().i = i;
+			esqueletoIII.GetComponent<IAScript>().i = i;
+			esqueletoIV.GetComponent<IAScript>().i = i;
+
+
+		} 
+
+		else {
+
+			yield return new WaitForSeconds (15);
+			esqueletos = Instantiate (esqueletos_);
+			esqueletos.transform.SetParent (esqueletos_.transform.parent);
+			esqueletos.transform.localPosition = esqueletos_.transform.localPosition;
+			esqueletos.transform.rotation = esqueletos_.transform.rotation;
+			esqueletos.transform.localScale = esqueletos_.transform.localScale;
+
+			esqueletos.SetActive (true);
+
+			GameObject esqueletoI = esqueletos.transform.Find ("EsqueletoIdle").gameObject;
+			GameObject esqueletoII = esqueletos.transform.Find ("EsqueletoIdle (1)").gameObject;
+			GameObject esqueletoIII = esqueletos.transform.Find ("EsqueletoIdle (2)").gameObject;
+			GameObject esqueletoIV = esqueletos.transform.Find ("EsqueletoIdle (3)").gameObject;
+
+			yield return new WaitForSeconds (0.3f);
+
+			esqueletoI.transform.SetParent (this.gameObject.transform.parent);
+			esqueletoII.transform.SetParent (this.gameObject.transform.parent);
+			esqueletoIII.transform.SetParent (this.gameObject.transform.parent);
+			esqueletoIV.transform.SetParent (this.gameObject.transform.parent);
+
+			esqueletoI.GetComponent<IAScript>().enabled = true;
+			esqueletoII.GetComponent<IAScript>().enabled = true;
+			esqueletoIII.GetComponent<IAScript>().enabled = true;
+			esqueletoIV.GetComponent<IAScript>().enabled = true;
+
+			esqueletoI.GetComponent<IAScript>().i = i;
+			esqueletoII.GetComponent<IAScript>().i = i;
+			esqueletoIII.GetComponent<IAScript>().i = i;
+			esqueletoIV.GetComponent<IAScript>().i = i;
+
+		}
+
+		StartCoroutine (spawnaEsqueletos ());
 
 	}
 	
