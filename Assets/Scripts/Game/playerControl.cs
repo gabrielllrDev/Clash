@@ -50,8 +50,94 @@ public class playerControl : MonoBehaviour {
 	GameObject tropaI;
 	GameObject tropaII;
 
+	[Header("Fireball")]
+
+	public GameObject fireball_;
+	public GameObject fireballII_;
+
+	GameObject fireball;
+	GameObject fireballII;
+
+	Vector3 originalFirebPos;
+	Vector3 originalFirebPosII;
+
+	Vector3 alvoPos;
+	Vector3 alvoPosII;
+
+	float j;
+	float k;
+
+	bool ativouFireball = false;
+	bool ativouFireballII = false;
+
+	bool mudaMovimento = false;
+	bool mudaMovimentoII = false;
+
+	public Material fireballMat;
+
+	void spawnaFireball(string timeTropa){
+
+
+
+		if (timeTropa == "tropa") {
+
+			fireball = Instantiate (fireball_);
+			//fireball.transform.SetParent (fireball_.transform.parent);
+
+			fireball.transform.localPosition = fireball_.transform.localPosition;
+			fireball.transform.localRotation = fireball_.transform.localRotation;
+			fireball.transform.localScale = fireball_.transform.lossyScale;
+
+			fireball.GetComponent<MeshRenderer> ().material = fireballMat;
+			fireball.transform.Find ("particula").gameObject.SetActive (true);
+
+			originalFirebPos = fireball_.transform.position;
+
+			alvoPos = tropaI.transform.position; //!!!
+
+			//fireball.GetComponent<Animator> ().enabled = true;
+
+			ativouFireball = true;
+
+		} 
+
+		else {
+
+			fireballII = Instantiate (fireballII_);
+			//fireballII.transform.SetParent (fireballII_.transform.parent);
+
+			fireballII.transform.localPosition = fireballII_.transform.localPosition;
+			fireballII.transform.localRotation = fireballII.transform.localRotation;
+			fireballII.transform.localScale = fireballII_.transform.lossyScale;
+
+			fireballII.GetComponent<MeshRenderer> ().material = fireballMat;
+			fireballII.transform.Find ("particula").gameObject.SetActive (true);
+
+			originalFirebPosII = fireballII_.transform.position;
+
+			alvoPosII = tropaII.transform.position;
+
+			//fireballII.GetComponent<Animator> ().enabled = true;
+
+			ativouFireballII = true;
+
+		}
+			
+		//fireball.SetActive (true);
+
+	}
+
 	// Use this for initialization
 	void Start () {
+
+		j = 0;
+		k = 0;
+
+		ativouFireball = false;
+		mudaMovimento = false;
+
+		ativouFireballII = false;
+		mudaMovimentoII = false;
 
 		SelectI.localPosition = selectPIPosition [0];
 		SelectII.localPosition = selectPIIPosition [0];
@@ -66,6 +152,72 @@ public class playerControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		j = Mathf.Clamp (j, 0, 1);
+		k = Mathf.Clamp (k, 0, 1);
+
+		if (fireball != null && alvoPos != null) {
+
+			fireball.transform.position = Vector3.Lerp (originalFirebPos, alvoPos, j);
+
+		}
+
+		if (fireballII != null && alvoPosII != null) {
+
+			fireballII.transform.position = Vector3.Lerp (originalFirebPosII, alvoPosII, k);
+
+		}
+
+		if (ativouFireball) {
+
+			if (!mudaMovimento) {
+
+				j = j + Time.deltaTime * 0.5f;
+
+				if (j >= 1) {
+
+					mudaMovimento = true;
+
+				}
+
+			} 
+
+			else {
+
+				ativouFireball = false;
+				mudaMovimento = false;
+				j = 0;
+				Destroy (fireball);
+
+			}
+
+		}
+
+		if (ativouFireballII) {
+
+			if (!mudaMovimentoII) {
+
+				k = k + Time.deltaTime * 0.5f;
+
+				if (k >= 1) {
+
+					mudaMovimentoII = true;
+
+				}
+
+			} 
+
+			else {
+
+				ativouFireballII = false;
+				mudaMovimentoII = false;
+				k = 0;
+				Destroy (fireballII);
+
+			}
+
+		}
+
 
 		if (playPartida.partidaRolando) {
 
@@ -90,17 +242,45 @@ public class playerControl : MonoBehaviour {
 
 			if (isSelecting) {
 
+				if (deck.deckPlayerI [positionID] == "Fireball") {
+
+					if (Input.GetKeyDown (KeyCode.A) && (holoIPos.transform.localPosition.x - Offset) >= xLimitInf) {
+
+						holoIPos.transform.position = new Vector3 (holoIPos.transform.position.x - Offset, holoIPos.transform.position.y, holoIPos.transform.position.z);
+
+					}
+
+					if (Input.GetKeyDown (KeyCode.D) && (holoIPos.transform.localPosition.x + Offset) <= xLimitSupII + 15) {
+
+						holoIPos.transform.position = new Vector3 (holoIPos.transform.position.x + Offset, holoIPos.transform.position.y, holoIPos.transform.position.z);
+
+					}
+
+				} 
+
+
+				else {
+
+					if (Input.GetKeyDown (KeyCode.A) && (holoIPos.transform.localPosition.x - Offset) >= xLimitInf) {
+
+						holoIPos.transform.position = new Vector3 (holoIPos.transform.position.x - Offset, holoIPos.transform.position.y, holoIPos.transform.position.z);
+
+					}
+
+					if (Input.GetKeyDown (KeyCode.D) && (holoIPos.transform.localPosition.x + Offset) <= xLimitSup) {
+
+						holoIPos.transform.position = new Vector3 (holoIPos.transform.position.x + Offset, holoIPos.transform.position.y, holoIPos.transform.position.z);
+
+					}
+
+				}
+
 				if (Input.GetKeyDown (KeyCode.W) && (holoIPos.transform.localPosition.z + Offset) <= zLimitSup) {
 
 					holoIPos.transform.position = new Vector3 (holoIPos.transform.position.x, holoIPos.transform.position.y, holoIPos.transform.position.z + Offset);
 
 				}
-
-				if (Input.GetKeyDown (KeyCode.A) && (holoIPos.transform.localPosition.x - Offset) >= xLimitInf) {
-
-					holoIPos.transform.position = new Vector3 (holoIPos.transform.position.x - Offset, holoIPos.transform.position.y, holoIPos.transform.position.z);
-
-				}
+					
 
 				if (Input.GetKeyDown (KeyCode.S) && (holoIPos.transform.localPosition.z - Offset) >= zLimitInf) {
 
@@ -108,15 +288,44 @@ public class playerControl : MonoBehaviour {
 
 				}
 
-				if (Input.GetKeyDown (KeyCode.D) && (holoIPos.transform.localPosition.x + Offset) <= xLimitSup) {
-
-					holoIPos.transform.position = new Vector3 (holoIPos.transform.position.x + Offset, holoIPos.transform.position.y, holoIPos.transform.position.z);
-
-				}
-
 			}
 
 			if (isSelectingII) {
+
+				if (deck.deckPlayerII [positionID2] == "Fireball") {
+
+
+					if (Input.GetKeyDown (KeyCode.LeftArrow) && (holoIIPos.transform.localPosition.x - Offset) >= xLimitInf - 15) {
+
+						holoIIPos.transform.position = new Vector3 (holoIIPos.transform.position.x - Offset, holoIIPos.transform.position.y, holoIIPos.transform.position.z);
+
+					}
+
+
+					if (Input.GetKeyDown (KeyCode.RightArrow) && (holoIIPos.transform.localPosition.x + Offset) <= xLimitSupII) {
+
+						holoIIPos.transform.position = new Vector3 (holoIIPos.transform.position.x + Offset, holoIIPos.transform.position.y, holoIIPos.transform.position.z);
+
+					}
+
+				} 
+
+				else {
+
+					if (Input.GetKeyDown (KeyCode.LeftArrow) && (holoIIPos.transform.localPosition.x - Offset) >= xLimitInfII) {
+
+						holoIIPos.transform.position = new Vector3 (holoIIPos.transform.position.x - Offset, holoIIPos.transform.position.y, holoIIPos.transform.position.z);
+
+					}
+
+
+					if (Input.GetKeyDown (KeyCode.RightArrow) && (holoIIPos.transform.localPosition.x + Offset) <= xLimitSupII) {
+
+						holoIIPos.transform.position = new Vector3 (holoIIPos.transform.position.x + Offset, holoIIPos.transform.position.y, holoIIPos.transform.position.z);
+
+					}
+
+				}
 
 				if (Input.GetKeyDown (KeyCode.UpArrow) && (holoIIPos.transform.localPosition.z + Offset) <= zLimitSup) {
 
@@ -124,21 +333,9 @@ public class playerControl : MonoBehaviour {
 
 				}
 
-				if (Input.GetKeyDown (KeyCode.LeftArrow) && (holoIIPos.transform.localPosition.x - Offset) >= xLimitInfII) {
-
-					holoIIPos.transform.position = new Vector3 (holoIIPos.transform.position.x - Offset, holoIIPos.transform.position.y, holoIIPos.transform.position.z);
-
-				}
-
 				if (Input.GetKeyDown (KeyCode.DownArrow) && (holoIIPos.transform.localPosition.z - Offset) >= zLimitInf) {
 
 					holoIIPos.transform.position = new Vector3 (holoIIPos.transform.position.x, holoIIPos.transform.position.y, holoIIPos.transform.position.z - Offset);
-
-				}
-
-				if (Input.GetKeyDown (KeyCode.RightArrow) && (holoIIPos.transform.localPosition.x + Offset) <= xLimitSupII) {
-
-					holoIIPos.transform.position = new Vector3 (holoIIPos.transform.position.x + Offset, holoIIPos.transform.position.y, holoIIPos.transform.position.z);
 
 				}
 
@@ -385,6 +582,8 @@ public class playerControl : MonoBehaviour {
 
 				}
 
+				spawnaFireball ("tropaII");
+
 			}
 
 		}
@@ -505,6 +704,8 @@ public class playerControl : MonoBehaviour {
 
 				}
 
+				spawnaFireball ("tropa");
+
 			}
 
 		}
@@ -519,7 +720,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCost = 0.5f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 0) {
 
@@ -541,7 +742,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCost = 0.3f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 1) {
 
@@ -563,7 +764,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCost = 0.5f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 2) {
 
@@ -585,7 +786,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCost = 0.4f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 3) {
 
@@ -607,7 +808,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCost = 0.4f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 4) {
 
@@ -629,10 +830,20 @@ public class playerControl : MonoBehaviour {
 
 				elixirCost = 0.4f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 
-					holoI.obj [i].SetActive (false);
+					if (i == 5) {
+
+						holoI.obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						holoI.obj [i].SetActive (false);
+
+					}
 
 
 				}
@@ -647,7 +858,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCostII = 0.5f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 0) {
 
@@ -669,7 +880,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCostII = 0.3f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 1) {
 
@@ -691,7 +902,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCostII = 0.5f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 2) {
 
@@ -713,7 +924,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCostII = 0.4f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 3) {
 
@@ -735,7 +946,7 @@ public class playerControl : MonoBehaviour {
 
 				elixirCostII = 0.4f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 					if (i == 4) {
 
@@ -757,10 +968,20 @@ public class playerControl : MonoBehaviour {
 
 				elixirCostII = 0.4f;
 
-				for (int i = 0; i < 5; i++) {
+				for (int i = 0; i < 6; i++) {
 
 
-					holoII.obj [i].SetActive (false);
+					if (i == 5) {
+
+						holoII.obj [i].SetActive (true);
+
+					} 
+
+					else {
+
+						holoII.obj [i].SetActive (false);
+
+					}
 
 
 				}

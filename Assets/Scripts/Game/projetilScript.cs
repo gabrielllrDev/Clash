@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class projetilScript : MonoBehaviour {
 
+	public bool isFireball;
+
 	public bool teamBlue;
 	IAScript vidaInimigo;
 	vidaTorre vidaTorre_;
@@ -42,7 +44,11 @@ public class projetilScript : MonoBehaviour {
 
 			}
 
-			Destroy (this.gameObject);
+			if (!isFireball) {
+
+				Destroy (this.gameObject);
+
+			}
 
 		}
 
@@ -51,7 +57,11 @@ public class projetilScript : MonoBehaviour {
 			vidaTorre_ = other.GetComponent<vidaTorre> ();
 			vidaTorre_.vida = vidaTorre_.vida - danoProjetil;
 
-			Destroy (this.gameObject);
+			if (!isFireball) {
+
+				Destroy (this.gameObject);
+
+			}
 
 
 		}
