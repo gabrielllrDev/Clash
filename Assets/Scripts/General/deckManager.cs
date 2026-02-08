@@ -25,7 +25,9 @@ public class deckManager : MonoBehaviour {
 	[Header("Game")]
 
 	public Text p1GameName;
+	public Text p1GameNameShadow;
 	public Text p2GameName;
+	public Text p2GameNameShadow;
 
 	public Texture[] texturesCartas; //1 Bruxa, 2 Cavaleiro, 3 Fireball, 4 Gigante, 5 Mini P, 6 Mosqueteira
 	public RawImage[] deckGameI;
@@ -194,7 +196,9 @@ public class deckManager : MonoBehaviour {
 		disponibilidadeCarta ();
 
 		p1GameName.text = playerIName;
+		p1GameNameShadow.text = playerIName;
 		p2GameName.text = playerIIName;
+		p2GameNameShadow.text = playerIIName;
 
 		if (menuCam.isActiveAndEnabled) {
 
