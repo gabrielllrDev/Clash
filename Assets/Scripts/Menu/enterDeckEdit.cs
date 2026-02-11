@@ -16,6 +16,9 @@ public class enterDeckEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	public selectCartas TropasMenu;
 	public Transform tropasRotation;
 
+	public GameObject SFX_;
+	GameObject SFX;
+
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +34,9 @@ public class enterDeckEdit : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		if (isInPlace) {
 
 			if (Input.GetMouseButtonDown (0)) {
+
+				SFX = Instantiate (SFX_);
+				SFX.SetActive (true);
 
 				deckEditor = !deckEditor;
 

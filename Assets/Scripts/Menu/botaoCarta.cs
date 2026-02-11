@@ -21,6 +21,9 @@ public class botaoCarta : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	public static int posicaoCartaTroca;
 	public static int posicaoCartaSelecionadaTroca;
 
+	public GameObject SFX_;
+	GameObject SFX;
+
 	// Use this for initialization
 	void Start () {
 
@@ -45,6 +48,9 @@ public class botaoCarta : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 		if (isInPlace) {
 
 			if (Input.GetMouseButtonDown (0)) {
+
+				SFX = Instantiate (SFX_);
+				SFX.SetActive (true);
 
 				scriptSelecao.trocaView (cartaCorrespondente);
 

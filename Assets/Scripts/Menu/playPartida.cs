@@ -10,6 +10,12 @@ public class playPartida : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 	public Animator cutsceneAnim;
 
 	public static bool partidaRolando;
+
+	public GameObject menuSound;
+	public GameObject partidaSound;
+	public GameObject playSound_;
+	GameObject playSound;
+
 	// Use this for initialization
 	void Start () {
 
@@ -25,12 +31,25 @@ public class playPartida : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
 			if (Input.GetMouseButtonDown (0)) {
 
+				menuSound.SetActive (false);
+
+				playSound = Instantiate (playSound_);
+				playSound.SetActive (true);
+				StartCoroutine (somPartida ());
+
 				cutsceneAnim.SetBool ("Play", true);
 				partidaRolando = true;
 
 			}
 
 		}
+
+	}
+
+	IEnumerator somPartida(){
+
+		yield return new WaitForSeconds (3);
+		partidaSound.SetActive (true);
 
 	}
 
