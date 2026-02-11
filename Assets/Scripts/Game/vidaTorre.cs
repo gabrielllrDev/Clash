@@ -9,6 +9,9 @@ public class vidaTorre : MonoBehaviour {
 	float valorInicialVida;
 	public Slider barraVida;
 
+	public bool teamBlue;
+	public bool isKing;
+
 	// Use this for initialization
 	void Start () {
 
@@ -21,8 +24,39 @@ public class vidaTorre : MonoBehaviour {
 
 		barraVida.value = vida / valorInicialVida;
 
-
 		if (vida <= 0) {
+
+			if (teamBlue) {
+
+				if (isKing) {
+
+					statusPartida.kingBlueDown = true;
+
+				} 
+
+				else {
+
+					statusPartida.pontosII++;
+
+				}
+
+			} 
+
+			else {
+
+				if (isKing) {
+
+					statusPartida.kingRedDown = true;
+
+				} 
+
+				else {
+
+					statusPartida.pontosI++;
+
+				}
+
+			}
 
 			Destroy (this.gameObject);
 

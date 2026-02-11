@@ -156,13 +156,13 @@ public class playerControl : MonoBehaviour {
 		j = Mathf.Clamp (j, 0, 1);
 		k = Mathf.Clamp (k, 0, 1);
 
-		if (fireball != null && alvoPos != null) {
+		if (fireball != null) {
 
 			fireball.transform.position = Vector3.Lerp (originalFirebPos, alvoPos, j);
 
 		}
 
-		if (fireballII != null && alvoPosII != null) {
+		if (fireballII != null) {
 
 			fireballII.transform.position = Vector3.Lerp (originalFirebPosII, alvoPosII, k);
 
